@@ -25,6 +25,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
+import { ProductItemComponent } from './components/dashboard/product-item/product-item.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { environment } from 'src/environments/environment';
     OrderComponent,
     ProductDetailsComponent,
     ProductListAdminComponent,
+    ProductItemComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

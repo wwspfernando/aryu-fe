@@ -1,3 +1,5 @@
+import { CartComponent } from './components/cart/cart.component';
+import { ProductItemComponent } from './components/dashboard/product-item/product-item.component';
 import { OrderComponent } from './components/order/order.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './components/auth/register/register.component';
@@ -11,6 +13,14 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductComponent,
+  },
+  {
+    path: 'dashboard/products/:productId',
+    component: ProductItemComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
   },
   {
     path: 'orders',

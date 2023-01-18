@@ -33,4 +33,22 @@ export class ProductService {
   getAll(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(environment.API_URL + '/products');
   }
+
+  get(productId: string): Observable<Product> {
+    return this.httpClient.get<Product>(
+      environment.API_URL + '/products/' + productId
+    );
+  }
+
+  buyItem(productId: string, userId: string): Observable<Product> {
+    return this.httpClient.get<Product>(
+      ` ${environment.API_URL}/products/buy/${productId}/${userId}`
+    );
+  }
+
+  getCart(userId: string): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(
+      ` ${environment.API_URL}/products/boughtProducts/${userId}`
+    );
+  }
 }

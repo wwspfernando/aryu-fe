@@ -11,7 +11,9 @@ export class NavBarComponent implements OnInit {
   @Input() isLoggedIn: boolean = false;
   constructor(private readonly userService: UserService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.checkUserLoggedIn();
+  }
 
   logOut() {
     this.userService.logout();
@@ -19,5 +21,9 @@ export class NavBarComponent implements OnInit {
 
   checkIsAdmin(): boolean {
     return localStorage.getItem('role') === 'Admin';
+  }
+
+  checkUserLoggedIn() {
+    this.isLoggedIn = localStorage.getItem('authToken') !== null;
   }
 }

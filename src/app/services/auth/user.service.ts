@@ -33,6 +33,7 @@ export class UserService {
         this.toastrService.success('Login Success');
         localStorage.setItem('authToken', res.id);
         localStorage.setItem('role', res.role);
+        localStorage.setItem('userJSON', JSON.stringify(res));
       },
       (err) => {
         console.log('err', err.error.message);
@@ -61,9 +62,15 @@ export class UserService {
     );
   }
 
+  getCurrentUser(): User {
+    const user = <User>JSON.parse(localStorage.getItem('userJSON') || '');
+    return user;
+  }
+
   logout() {
     localStorage.removeItem('authToken');
     localStorage.removeItem('role');
+    localStorage.removeItem('userJSON');
     this.router.navigateByUrl('/auth/login');
   }
 }
