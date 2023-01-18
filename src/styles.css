@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+input.ng-pristine,
+textarea.ng-pristine,
+select .ng-pristine {
+  border: 1px solid var(--blue);
+}
+
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+  border: 1px solid var(--red);
+}
+
+input.ng-touched.ng-valid,
+textarea.ng-touched.ng-valid,
+select.ng-touched.ng-valid {
+  border: 1px solid var(--green);
+}
