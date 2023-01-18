@@ -1,6 +1,13 @@
 <h5>Product Details</h5>
 
 <div class="container">
+  <button
+    *ngIf="isOnEdit"
+    class="btn btn-success float-right my-1"
+    (click)="resetEdit()"
+  >
+    New
+  </button>
   <form [formGroup]="formGroup" (submit)="onSubmit()">
     <div class="form-group">
       <label for="exampleInputEmail1">Title</label>
@@ -38,8 +45,12 @@
         class="form-control"
         id="exampleInputPassword1"
         placeholder="Image"
-        formControlName="imageUrl"
       />
+    </div>
+
+    <div class="form-group" *ngIf="formGroup.controls.imageUrl.value">
+      <label for="exampleInputPassword1">Preview</label>
+      <img [src]="formGroup.controls.imageUrl.value" alt="" height="100" />
     </div>
 
     <button

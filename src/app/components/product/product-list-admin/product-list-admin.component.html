@@ -1,1 +1,14 @@
-<p>product-list-admin works!</p>
+<h5>Products List</h5>
+
+<ul class="list-group" *ngFor="let product of products$ | async">
+  <li class="list-group-item">
+    <img width="50" height="50" class="mx-2" [src]="product.imageUrl" alt="i" />
+    {{ product.title }}
+    <div class="float-right">
+      <button class="btn btn-success mr-2" (click)="edit(product)">Edit</button>
+      <button class="btn btn-danger" (click)="delete(product.id)">
+        Delete
+      </button>
+    </div>
+  </li>
+</ul>
