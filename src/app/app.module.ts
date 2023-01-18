@@ -21,6 +21,11 @@ import { OrderComponent } from './components/order/order.component';
 import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
 import { ProductListAdminComponent } from './components/product/product-list-admin/product-list-admin.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,8 +47,13 @@ import { ProductListAdminComponent } from './components/product/product-list-adm
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
