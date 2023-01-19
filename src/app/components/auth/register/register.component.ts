@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -18,8 +19,13 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private readonly fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
+    if (localStorage.getItem('authToken')) {
+      this.router.navigateByUrl('/dashboard');
+    }
+
     this.registerFormGroup = this.fb.group({
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
