@@ -23,4 +23,8 @@ export class ProductsListComponent implements OnInit {
   navigate(productId: string) {
     this.router.navigateByUrl('dashboard/products/' + productId);
   }
+
+  productBought(product: Product) {
+    return product.boughtUserId == null;
+  }
 }

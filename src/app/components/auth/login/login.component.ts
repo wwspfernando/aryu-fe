@@ -21,8 +21,16 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private readonly router: Router
   ) {
-    if (localStorage.getItem('authToken')) {
+    if (
+      localStorage.getItem('authToken') &&
+      localStorage.getItem('role') == 'Regular'
+    ) {
       this.router.navigateByUrl('/dashboard');
+    } else if (
+      localStorage.getItem('authToken') &&
+      localStorage.getItem('role') == 'Admin'
+    ) {
+      this.router.navigateByUrl('/products');
     }
 
     this.loginFormGroup = this.fb.group({

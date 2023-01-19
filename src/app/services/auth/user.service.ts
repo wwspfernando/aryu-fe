@@ -29,7 +29,11 @@ export class UserService {
     res.subscribe(
       (res: User) => {
         console.log('res', res);
-        this.router.navigateByUrl('dashboard');
+        if (res.role == 'Admin') {
+          this.router.navigateByUrl('products');
+        } else if (res.role == 'Regular') {
+          this.router.navigateByUrl('dashboard');
+        }
         this.toastrService.success('Login Success');
         localStorage.setItem('authToken', res.id);
         localStorage.setItem('role', res.role);

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/auth/user.service';
 import { Observable } from 'rxjs';
 import { ProductService } from './../../services/product/product.service';
@@ -13,7 +14,8 @@ export class CartComponent implements OnInit {
   products$: Observable<Product[]>;
   constructor(
     private productService: ProductService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.products$ = this.productService.getCart(
       this.userService.getCurrentUser().id
@@ -21,4 +23,8 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  navigate(productId: string) {
+    this.router.navigateByUrl('dashboard/products/' + productId);
+  }
 }

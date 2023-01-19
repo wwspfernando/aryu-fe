@@ -1,3 +1,6 @@
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { UserRole } from 'src/app/enums/user-role.enum';
+import { RoleGuard } from './guards/role.guard';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductItemComponent } from './components/dashboard/product-item/product-item.component';
 import { OrderComponent } from './components/order/order.component';
@@ -13,14 +16,26 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      roles: [UserRole.Admin],
+    },
   },
   {
     path: 'dashboard/products/:productId',
     component: ProductItemComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: [UserRole.Admin],
+    },
   },
   {
     path: 'cart',
     component: CartComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      roles: [UserRole.Regular],
+    },
   },
   {
     path: 'orders',
@@ -29,8 +44,11 @@ const routes: Routes = [
 
   {
     path: 'dashboard',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RoleGuard],
     component: DashboardComponent,
+    data: {
+      roles: [UserRole.Regular],
+    },
   },
 
   {
@@ -41,6 +59,15 @@ const routes: Routes = [
   {
     path: 'auth/register',
     component: RegisterComponent,
+  },
+  {
+    path: '',
+    redirectTo: '/auth/login',
+    pathMatch: 'full',
+  },
+  {
+    path: '*',
+    redirectTo: '/auth/login',
   },
 ];
 
