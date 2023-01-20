@@ -1,3 +1,6 @@
+import { ToastrModule } from 'ngx-toastr';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductItemComponent } from './product-item.component';
@@ -8,9 +11,13 @@ describe('ProductItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductItemComponent ]
-    })
-    .compileComponents();
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        ToastrModule.forRoot(),
+      ],
+      declarations: [ProductItemComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
